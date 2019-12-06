@@ -13,13 +13,8 @@ app.use(morgan((NODE_ENV === 'production') ? 'tiny' : 'common', {
 }))
 app.use(cors())
 app.use(helmet())
-//hacked by xss
-app.get('/xss', (req, res) => {
-  res.cookie('secretToken', '1234567890');
-  res.sendFile(__dirname + '/xss-example.html');
-});
 
-app.use('/articles', articlesRouter)
+app.use('/api/articles', articlesRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello, world!')
